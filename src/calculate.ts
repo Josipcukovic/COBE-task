@@ -1,3 +1,6 @@
+import { Grocery } from "./Grocery";
+
+
 const roundNumberToTwoDecimals = (number: number) => {
     return Math.round(number * 100) / 100;
 }
@@ -10,19 +13,20 @@ const calculateTotalPrice = (tax: number, amount: number) => {
     return roundNumberToTwoDecimals(amount + tax);
 }
 
-const calculatePriceAndQuantity = (groceries: Array<any>) => {
+
+const calculatePriceAndQuantity = (groceries: Grocery[]) => {
     let numberOfArticles = 0;
     let totalPriceWithoutTax = 0;
     let tax = 0;
     let totalPrice = 0;
 
-    groceries.forEach(item => {
-        if (!(item.quantity < 0 || !Number.isInteger(item.quantity) || item.price < 0)) {
+    groceries.forEach(grocery => {
+        if (!(grocery.quantity < 0 || !Number.isInteger(grocery.quantity) || grocery.price < 0)) {
 
-            numberOfArticles += item.quantity
-            totalPriceWithoutTax += (item.quantity * item.price);
+            numberOfArticles += grocery.quantity
+            totalPriceWithoutTax += (grocery.quantity * grocery.price);
         } else {
-            console.log("some of properties are not valid");
+            console.log(`some of the properties in ${grocery.name} object are not valid `);
         }
 
     })
